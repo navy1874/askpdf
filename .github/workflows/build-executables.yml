@@ -129,16 +129,20 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
       
-      - name: List downloaded artifacts
+      - name: Rename executables to avoid conflicts
         run: |
-          find . -type f -executable -o -name "*.exe" | head -20
+          mkdir -p release_files
+          cp PDFReader-Windows/**/PDFReader.exe release_files/PDFReader-Windows.exe || true
+          cp PDFReader-Linux/**/PDFReader release_files/PDFReader-Linux || true
+          cp PDFReader-macOS/**/PDFReader release_files/PDFReader-macOS || true
+          ls -la release_files/
       
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            PDFReader-Windows/**/PDFReader.exe
-            PDFReader-Linux/**/PDFReader
-            PDFReader-macOS/**/PDFReader
+            release_files/PDFReader-Windows.exe
+            release_files/PDFReader-Linux
+            release_files/PDFReader-macOS
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
