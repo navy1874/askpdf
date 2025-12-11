@@ -59,7 +59,9 @@ jobs:
       
       - name: Clean build directory
         run: |
-          rm -rf build dist *.spec __pycache__
+          rm -rf build dist __pycache__
+          find . -maxdepth 1 -name "*.spec" -type f -delete
+          find . -maxdepth 1 -name "PDFReader.spec" -type f -delete
       
       - name: Build executable
         run: |
@@ -88,7 +90,9 @@ jobs:
       
       - name: Clean build directory
         run: |
-          rm -rf build dist *.spec __pycache__
+          rm -rf build dist __pycache__
+          find . -maxdepth 1 -name "*.spec" -type f -delete
+          find . -maxdepth 1 -name "PDFReader.spec" -type f -delete
       
       - name: Build executable
         run: |
