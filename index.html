@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
+  <title>AskPDF - PDF, Text & Image Viewer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>AskPDF</h1>
+      <p class="subtitle">Handle PDF, Text, Images and More</p>
+    </header>
+
+    <div class="toolbar">
+      <button id="openFileBtn" class="btn btn-primary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+          <polyline points="13 2 13 9 20 9"></polyline>
+        </svg>
+        Open File
+      </button>
+      <div class="file-info">
+        <span id="fileName">No file opened</span>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <div id="welcomeScreen" class="welcome-screen">
+        <div class="welcome-content">
+          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+            <polyline points="13 2 13 9 20 9"></polyline>
+          </svg>
+          <h2>Welcome to AskPDF</h2>
+          <p>Click "Open File" to view PDFs, text files, or images</p>
+          <div class="supported-formats">
+            <span class="format-badge">PDF</span>
+            <span class="format-badge">TXT</span>
+            <span class="format-badge">JPG</span>
+            <span class="format-badge">PNG</span>
+            <span class="format-badge">GIF</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="contentDisplay" class="content-display hidden">
+        <div id="pdfViewer" class="viewer hidden"></div>
+        <div id="textViewer" class="viewer hidden">
+          <pre id="textContent"></pre>
+        </div>
+        <div id="imageViewer" class="viewer hidden">
+          <img id="imageContent" alt="Opened image" />
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Cross-platform desktop app for Windows, Linux, and macOS</p>
+    </footer>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
