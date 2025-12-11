@@ -130,12 +130,34 @@ jobs:
       - uses: actions/download-artifact@v4
       
       - name: Rename executables to avoid conflicts
+        shell: bash
         run: |
           mkdir -p release_files
-          cp PDFReader-Windows/**/PDFReader.exe release_files/PDFReader-Windows.exe || true
-          cp PDFReader-Linux/**/PDFReader release_files/PDFReader-Linux || true
-          cp PDFReader-macOS/**/PDFReader release_files/PDFReader-macOS || true
-          ls -la release_files/
+          
+          # List all artifacts for debugging
+          echo "=== All downloaded artifacts ==="
+          find . -type f -name "PDFReader*" -o -name "*.exe" | sort
+          
+          # Find and copy Windows executable
+          if find PDFReader-Windows -name "PDFReader.exe" 2>/dev/null | head -1; then
+            cp "$(find PDFReader-Windows -name "PDFReader.exe" | head -1)" release_files/PDFReader-Windows.exe
+            echo "✓ Windows executable copied"
+          fi
+          
+          # Find and copy Linux executable
+          if find PDFReader-Linux -type f -name "PDFReader" 2>/dev/null | head -1; then
+            cp "$(find PDFReader-Linux -type f -name "PDFReader" | head -1)" release_files/PDFReader-Linux
+            echo "✓ Linux executable copied"
+          fi
+          
+          # Find and copy macOS executable
+          if find PDFReader-macOS -type f -name "PDFReader" 2>/dev/null | head -1; then
+            cp "$(find PDFReader-macOS -type f -name "PDFReader" | head -1)" release_files/PDFReader-macOS
+            echo "✓ macOS executable copied"
+          fi
+          
+          echo "=== Release files ==="
+          ls -lh release_files/ || echo "No files in release_files"
       
       - name: Create Release
         uses: softprops/action-gh-release@v1
