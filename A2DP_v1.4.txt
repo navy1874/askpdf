@@ -1,0 +1,53 @@
+Advanced Audio Distribution
+Profile
+Bluetooth® Profile Specification
+▪ Revision: v1.4
+▪ Revision Date: 2022-06-21
+▪ Prepared By: Audio, Telephony, and Automotive Working Group
+Abstract:
+This profile defines the requirements for Bluetooth devices necessary for support of the high-quality audio
+distribution. The requirements are expressed in terms of end-user services, and by defining the features and
+procedures that are required for interoperability between Bluetooth devices in the Audio Distribution usage
+model.
+Bluetooth SIG Proprietary
+
+Advanced Audio Distribution Profile / Profile Specification
+Revision History
+Revision Date Comments
+v1.3.1 14 July 2015 Adopted by the Bluetooth SIG BoD
+v1.3.2 2019-01-21 Adopted by the Bluetooth SIG Board of Directors
+v1.4 2022-06-21 Adopted by the Bluetooth SIG Board of Directors.
+Version History
+Versions Changes
+v1.3.0 to v1.3.1 Incorporated erratum E5272.
+v1.3.1 to v1.3.2 Incorporated errata E6731, E7369, E7370, E9120, E9121, and E9494.
+v1.3.2 to v1.4.0 Incorporated errata E18038, E18039, E18116, E18163, E18164, E18165,
+E18209, E18211, , E18314, E18340, E18360, E18368, E18369, E18370,
+E18398, E18481, E18482, 18398, 18705, 18812, E18994.
+Acknowledgments
+Name Company
+Berner and Mattner
+Rüdiger Mosig
+Broadcom
+Alicia Courtney
+Broadcom
+Ash Kapur
+CSR
+Jiny Bradshaw
+CSR
+Allan Madsen
+CSR
+David Trainor
+Denso
+Akira Miyajima
+Dolby
+Christof Fersch
+Dolby
+Daniel Fischer
+Ericsson
+Morgan Lindqvist
+Ericsson
+Fisseha Mekuria
+Ericsson
+Wim Koster
+Bluetooth SIG Proprietary Page 2 of 73
