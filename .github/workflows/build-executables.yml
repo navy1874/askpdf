@@ -12,6 +12,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
+      - name: Remove any existing spec files
+        shell: pwsh
+        run: |
+          Remove-Item -Path PDFReader.spec, pdf_reader_gui.spec -Force -ErrorAction SilentlyContinue
+      
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -41,6 +46,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      
+      - name: Remove any existing spec files
+        run: |
+          rm -f PDFReader.spec pdf_reader_gui.spec
       
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -77,6 +86,10 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
+      
+      - name: Remove any existing spec files
+        run: |
+          rm -f PDFReader.spec pdf_reader_gui.spec
       
       - name: Set up Python
         uses: actions/setup-python@v4
