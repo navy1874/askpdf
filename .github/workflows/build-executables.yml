@@ -44,8 +44,8 @@ jobs:
       
       - name: Install system dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y libxcb1 libxkb1 libxcb-xinerama0 libxcb-randr0 libxcb-xfixes0 libxcb-shape0 libgl1-mesa-glx
+          sudo apt-get update -qq || true
+          sudo apt-get install -y -qq libxcb1 libxcb-render0 libxcb-shape0 libxcb-xfixes0 libxcb-xinerama0 libxcb-randr0 libdbus-1-3 libfontconfig1 || true
       
       - name: Install Python dependencies
         run: |
