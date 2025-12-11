@@ -133,8 +133,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            PDFReader-Windows/**
-            PDFReader-Linux/**
-            PDFReader-macOS/**
+            PDFReader-Windows/PDFReader.exe
+            PDFReader-Linux/PDFReader
+            PDFReader-macOS/PDFReader
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
