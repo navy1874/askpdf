@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 from typing import Optional
+import sys
 
 from PyQt5.QtCore import Qt, QSize, QRect
 from PyQt5.QtGui import QPixmap, QImage, QCursor
@@ -32,7 +33,15 @@ from PIL import Image
 import pdfplumber
 import io
 
-from .cli import parse_page_ranges
+# When executed from a PyInstaller onefile/onedir build, __package__ can be
+# None, so fall back to absolute import paths.
+try:
+    from .cli import parse_page_ranges
+except Exception:  # noqa: BLE001 - broad on purpose for packaging edge cases
+    current_dir = Path(__file__).resolve().parent
+    sys.path.insert(0, str(current_dir))
+    sys.path.insert(0, str(current_dir.parent))
+    from cli import parse_page_ranges
 
 
 class CustomSplitter(QSplitter):
