@@ -113,7 +113,7 @@ askpdf/
 ### Technologies Used
 
 - **Electron**: Cross-platform desktop framework
-- **PDF.js**: PDF rendering library
+- **Browser PDF Viewer**: Built-in PDF rendering via iframe
 - **Node.js**: File system and backend operations
 
 ### Security

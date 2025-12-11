@@ -3,9 +3,6 @@ node_modules/
 
 # Build outputs
 dist/
-build/*.ico
-build/*.icns
-build/*.png
 
 # Package manager lock files
 package-lock.json
