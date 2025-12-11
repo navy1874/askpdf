@@ -23,8 +23,9 @@ jobs:
           pip install PyInstaller PyQt5 pymupdf pdfplumber pypdf typer rich pillow
       
       - name: Clean build directory
+        shell: pwsh
         run: |
-          rm -rf build dist *.spec __pycache__
+          Remove-Item -Path build, dist, *.spec, __pycache__ -Force -Recurse -ErrorAction SilentlyContinue
       
       - name: Build executable
         run: |
