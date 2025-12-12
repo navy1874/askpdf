@@ -4,8 +4,19 @@ from pathlib import Path
 from typing import Optional
 import sys
 
+# Ensure the script can find modules regardless of where it's run from
+_current_file = Path(__file__).resolve()
+_current_dir = _current_file.parent
+_src_dir = _current_dir.parent
+_project_root = _src_dir.parent
+
+# Add paths to sys.path if not already present
+for _path in [str(_current_dir), str(_src_dir), str(_project_root)]:
+    if _path not in sys.path:
+        sys.path.insert(0, _path)
+
 from PyQt5.QtCore import Qt, QSize, QRect
-from PyQt5.QtGui import QPixmap, QImage, QCursor
+from PyQt5.QtGui import QPixmap, QImage, QCursor, QIcon
 from PyQt5.QtWidgets import (
     QApplication,
     QMainWindow,
@@ -41,7 +52,10 @@ except Exception:  # noqa: BLE001 - broad on purpose for packaging edge cases
     current_dir = Path(__file__).resolve().parent
     sys.path.insert(0, str(current_dir))
     sys.path.insert(0, str(current_dir.parent))
-    from cli import parse_page_ranges
+    try:
+        from cli import parse_page_ranges
+    except ImportError:
+        from pdf_reader.cli import parse_page_ranges
 
 
 class CustomSplitter(QSplitter):
@@ -166,6 +180,9 @@ class PDFReaderGUI(QMainWindow):
         super().__init__()
         self.setWindowTitle("PDF Reader")
         self.setGeometry(100, 100, 1200, 700)
+        icon_path = self._resolve_icon_path()
+        if icon_path:
+            self.setWindowIcon(QIcon(str(icon_path)))
         
         self.current_pdf: Optional[Path] = None
         self.current_page = 0
@@ -180,6 +197,17 @@ class PDFReaderGUI(QMainWindow):
         self.create_menubar()
         self.init_ui()
         self.setAcceptDrops(True)
+
+    def _resolve_icon_path(self) -> Optional[Path]:
+        candidates = [
+            Path(getattr(sys, "_MEIPASS", _project_root)) / "icon.ico",
+            _project_root / "icon.ico",
+            _current_dir / "icon.ico",
+        ]
+        for path in candidates:
+            if path.exists():
+                return path
+        return None
 
     def create_menubar(self):
         """Create menu bar."""
