@@ -34,7 +34,7 @@ jobs:
       
       - name: Build executable
         run: |
-          python -m PyInstaller --clean --name=PDFReader --onedir --windowed --add-data="src/pdf_reader:pdf_reader" --hidden-import=PyQt5 --hidden-import=PyQt5.QtCore --hidden-import=PyQt5.QtGui --hidden-import=PyQt5.QtWidgets --hidden-import=pymupdf --hidden-import=pdfplumber --hidden-import=PIL --hidden-import=pypdf --exclude-module=matplotlib --exclude-module=numpy --exclude-module=pandas --exclude-module=scipy src/pdf_reader/gui.py
+          python -m PyInstaller --clean --name=PDFReader --onedir --windowed --icon=icon.ico --add-data="icon.ico;." --add-data="src/pdf_reader;pdf_reader" --hidden-import=PyQt5 --hidden-import=PyQt5.QtCore --hidden-import=PyQt5.QtGui --hidden-import=PyQt5.QtWidgets --hidden-import=pymupdf --hidden-import=pdfplumber --hidden-import=PIL --hidden-import=pypdf --collect-all=PyQt5 --exclude-module=matplotlib --exclude-module=numpy --exclude-module=pandas --exclude-module=scipy src/pdf_reader/gui.py
           Remove-Item -Path PDFReader.spec, pdf_reader_gui.spec -Force -ErrorAction SilentlyContinue
       
       - name: Upload Windows executable
@@ -75,7 +75,7 @@ jobs:
       
       - name: Build executable
         run: |
-          python -m PyInstaller --clean --name=PDFReader --onedir --windowed --add-data="src/pdf_reader:pdf_reader" --hidden-import=PyQt5 --hidden-import=PyQt5.QtCore --hidden-import=PyQt5.QtGui --hidden-import=PyQt5.QtWidgets --hidden-import=pymupdf --hidden-import=pdfplumber --hidden-import=PIL --hidden-import=pypdf --exclude-module=matplotlib --exclude-module=numpy --exclude-module=pandas --exclude-module=scipy src/pdf_reader/gui.py
+          python -m PyInstaller --clean --name=PDFReader --onedir --windowed --icon=icon.ico --add-data="icon.ico:." --add-data="src/pdf_reader:pdf_reader" --hidden-import=PyQt5 --hidden-import=PyQt5.QtCore --hidden-import=PyQt5.QtGui --hidden-import=PyQt5.QtWidgets --hidden-import=pymupdf --hidden-import=pdfplumber --hidden-import=PIL --hidden-import=pypdf --collect-all=PyQt5 --exclude-module=matplotlib --exclude-module=numpy --exclude-module=pandas --exclude-module=scipy src/pdf_reader/gui.py
           rm -f PDFReader.spec pdf_reader_gui.spec
       
       - name: Upload Linux executable
@@ -111,7 +111,7 @@ jobs:
       
       - name: Build executable
         run: |
-          python -m PyInstaller --clean --name=PDFReader --onedir --windowed --add-data="src/pdf_reader:pdf_reader" --hidden-import=PyQt5 --hidden-import=PyQt5.QtCore --hidden-import=PyQt5.QtGui --hidden-import=PyQt5.QtWidgets --hidden-import=pymupdf --hidden-import=pdfplumber --hidden-import=PIL --hidden-import=pypdf --exclude-module=matplotlib --exclude-module=numpy --exclude-module=pandas --exclude-module=scipy --exclude-module=PyQt5.QtBluetooth --exclude-module=PyQt5.QtNetwork --exclude-module=PyQt5.QtPrintSupport --exclude-module=PyQt5.QtDBus src/pdf_reader/gui.py
+          python -m PyInstaller --clean --name=PDFReader --onedir --windowed --icon=icon.ico --add-data="icon.ico:." --add-data="src/pdf_reader:pdf_reader" --hidden-import=PyQt5 --hidden-import=PyQt5.QtCore --hidden-import=PyQt5.QtGui --hidden-import=PyQt5.QtWidgets --hidden-import=pymupdf --hidden-import=pdfplumber --hidden-import=PIL --hidden-import=pypdf --collect-all=PyQt5 --exclude-module=matplotlib --exclude-module=numpy --exclude-module=pandas --exclude-module=scipy --exclude-module=PyQt5.QtBluetooth --exclude-module=PyQt5.QtNetwork --exclude-module=PyQt5.QtPrintSupport --exclude-module=PyQt5.QtDBus src/pdf_reader/gui.py
           rm -f PDFReader.spec pdf_reader_gui.spec
       
       - name: Upload macOS executable
